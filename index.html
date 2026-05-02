@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monitor de Milhas</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08101e;--s1:#0f1a2e;--s2:#162035;--bd:#1e2f48;--tx:#dde6f0;--mt:#5a7290;--ac:#f59e0b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-height:100vh}
+header{background:linear-gradient(135deg,#08101e,#0f1a2e);border-bottom:1px solid var(--bd);padding:2.5rem 2rem 2rem;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,#f59e0b12 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.hi{max-width:1200px;margin:0 auto;position:relative}
+.logo{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;letter-spacing:-.04em;color:#fff}
+.logo b{color:var(--ac)}
+.sub{color:var(--mt);font-size:.88rem;margin-top:.3rem}
+.stats{display:flex;gap:2.5rem;margin-top:1.8rem}
+.stat .n{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--ac);line-height:1}
+.stat .l{font-size:.7rem;color:var(--mt);text-transform:uppercase;letter-spacing:.06em;margin-top:.2rem}
+.ts{margin-top:1rem;font-size:.78rem;color:var(--mt)}
+.ts strong{color:var(--tx)}
+.bar-top{background:var(--s1);border-bottom:1px solid var(--bd);padding:.9rem 2rem;position:sticky;top:0;z-index:100}
+.bar-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.bar-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mt);margin-right:.5rem;white-space:nowrap}
+.pill{background:var(--s2);border:1px solid var(--bd);color:var(--mt);padding:.38rem .85rem;border-radius:999px;font-size:.78rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:.4rem}
+.pill:hover{border-color:var(--c,var(--ac));color:var(--tx)}
+.pill.active{background:var(--ac);border-color:var(--ac);color:#000;font-weight:600}
+.pill em{background:rgba(0,0,0,.15);border-radius:999px;padding:.05rem .4rem;font-style:normal;font-size:.68rem}
+.search-wrap{max-width:1200px;margin:1.5rem auto 0;padding:0 2rem}
+.search{width:100%;background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:.75rem 1rem;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
+.search:focus{border-color:var(--ac)}
+.search::placeholder{color:var(--mt)}
+.grid-wrap{max-width:1200px;margin:1.5rem auto 4rem;padding:0 2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1rem}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;overflow:hidden;display:flex;transition:transform .2s,border-color .2s,box-shadow .2s;animation:fu .4s ease both}
+.card:hover{transform:translateY(-3px);border-color:#2a3f62;box-shadow:0 8px 32px rgba(0,0,0,.35)}
+.card.hidden{display:none}
+.card-bar{width:4px;flex-shrink:0}
+.card-body{padding:1.1rem 1.2rem;flex:1;display:flex;flex-direction:column;gap:.7rem}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.site{font-size:.7rem;color:var(--mt);text-transform:uppercase;letter-spacing:.05em}
+.stars{color:var(--ac);font-size:.7rem;letter-spacing:1px}
+h3{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:600;line-height:1.45}
+h3 a{color:var(--tx);text-decoration:none;transition:color .2s}
+h3 a:hover{color:var(--ac)}
+.card-bottom{display:flex;flex-direction:column;gap:.55rem;margin-top:auto}
+.badges{display:flex;flex-wrap:wrap;gap:.3rem}
+.badge{font-size:.66rem;padding:.18rem .52rem;border-radius:999px;font-weight:500}
+.bar-wrap{height:3px;background:var(--bd);border-radius:999px;overflow:hidden}
+.bar-fill{height:100%;border-radius:999px;opacity:.65}
+.empty{display:none;text-align:center;padding:4rem 2rem;color:var(--mt)}
+.empty-icon{font-size:3rem;margin-bottom:1rem}
+footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-top:1px solid var(--bd)}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.stats{gap:1.2rem}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hi">
+    <div class="logo">Monitor de <b>Milhas</b> ✈</div>
+    <div class="sub">Promoções agregadas automaticamente das melhores fontes do Brasil</div>
+    <div class="stats">
+      <div class="stat"><span class="n">38</span><span class="l">Promoções</span></div>
+      <div class="stat"><span class="n">12</span><span class="l">Fontes</span></div>
+      <div class="stat"><span class="n">5</span><span class="l">Categorias</span></div>
+    </div>
+    <div class="ts">Última atualização: <strong>02/05/2026 às 18:42</strong></div>
+  </div>
+</header>
+<div class="bar-top">
+  <div class="bar-inner">
+    <span class="bar-label">Filtrar:</span>
+    <button class="pill active" onclick="filtrar(this,'all')">Todas <em>38</em></button><button class="pill" onclick="filtrar(this,'Clube Assinatura')" style="--c:#8b5cf6">🏆 Clube <em>5</em></button><button class="pill" onclick="filtrar(this,'Cartao de Credito')" style="--c:#ef4444">💳 Cartão <em>4</em></button><button class="pill" onclick="filtrar(this,'Geral')" style="--c:#6b7280">📌 Geral <em>19</em></button><button class="pill" onclick="filtrar(this,'Compra Bonificada')" style="--c:#f59e0b">🛒 Compra Bonificada <em>5</em></button><button class="pill" onclick="filtrar(this,'Passagens')" style="--c:#10b981">✈️ Passagens <em>9</em></button>
+  </div>
+</div>
+<div class="search-wrap">
+  <input class="search" type="text" placeholder="🔍  Buscar promoção..." oninput="buscar(this.value)">
+</div>
+<div class="grid-wrap">
+  <div class="grid" id="grid">
+    <div class="card" data-cats="Clube Assinatura|Cartao de Credito" data-rel="2" style="animation-delay:0.0s">
+      <div class="card-bar" style="background:#8b5cf6"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Melhores Cartões</span>
+          <span class="stars">★★☆☆☆</span>
+        </div>
+        <h3><a href="https://www.melhorescartoes.com.br/ultimo-dia-cartao-gol-smiles-100k-abr26.html" target="_blank">Último dia! Peça o cartão GOL Smiles e ganhe até 100.000 milhas bônus</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">🏆 Clube</span><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">💳 Cartão</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:20%;background:#8b5cf6"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.04s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Melhores Destinos</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://www.melhoresdestinos.com.br/promocao/rentcars-cupom-relampago" target="_blank">Promoção relâmpago! Alugue carro com até 50% OFF mais cupons com 10% ou 8% de desconto na Rentcars</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Clube Assinatura" data-rel="1" style="animation-delay:0.08s">
+      <div class="card-bar" style="background:#8b5cf6"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/ultimos-dias-assine-clube-smiles-2000-receba-22000-milhas-hora/" target="_blank">Últimos dias! Assine o Clube Smiles 2.000 e receba 22.000 milhas na hora</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">🏆 Clube</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#8b5cf6"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Compra Bonificada" data-rel="1" style="animation-delay:0.12s">
+      <div class="card-bar" style="background:#f59e0b"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/ainda-tempo-ganhe-ate-15-pontos-real-casas-bahia-azul-fidelidade/" target="_blank">Ainda dá tempo! Ganhe até 15 pontos por real na Casas Bahia com o Azul Fidelidade</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Compra Bonificada|Clube Assinatura" data-rel="1" style="animation-delay:0.16s">
+      <div class="card-bar" style="background:#f59e0b"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/receba-ate-18-milhas-real-gasto-shopping-smiles/" target="_blank">Receba até 18 milhas por real gasto no Shopping Smiles</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">🏆 Clube</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Compra Bonificada" data-rel="1" style="animation-delay:0.2s">
+      <div class="card-bar" style="background:#f59e0b"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/dia-das-maes-esfera-oferece-4-pontos-real-gasto-compras-kabum/" target="_blank">Dia das Mães! Esfera oferece 4 pontos por real gasto em compras na KaBuM!</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens" data-rel="1" style="animation-delay:0.24s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Melhores Cartões</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://www.melhoresdestinos.com.br/milhas/iberia-desconto-voos-avios-abr26" target="_blank">Muito bom! Iberia oferece até 30% OFF em passagens para a Europa – voos a partir de 12.800 pontos!</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.28s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Max Milhas Blog</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://blog.maxmilhas.com.br/dicas-de-viagem/regulamento-semana-do-consumidor-2026" target="_blank">Regulamento Semana do Consumidor 2026</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.32s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Max Milhas Blog</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://blog.maxmilhas.com.br/dicas-de-viagem/regulamento-dia-mundial-das-milhas-2026" target="_blank">Regulamento Dia Mundial das Milhas 2026</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.36s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Max Milhas Blog</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://blog.maxmilhas.com.br/dicas-de-viagem/regulamento-maxfriday-2025" target="_blank">Regulamento MaxFriday 2025</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.4s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Max Milhas Blog</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://blog.maxmilhas.com.br/dicas-de-viagem/regulamento-semana-do-consumidor-2025" target="_blank">Regulamento Semana do Consumidor 2025</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.44s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Max Milhas Blog</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://blog.maxmilhas.com.br/dicas-de-viagem/regulamento-desafio-dia-mundial-das-milhas" target="_blank">Regulamento Desafio Dia Mundial das Milhas</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:0.48s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Melhores Destinos</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://www.melhoresdestinos.com.br/promocao/passagens-aereas-2-em-1-estados-unidos-30-04-26" target="_blank">EUA 2×1 🇺🇸 Voos para Miami mais Orlando, Nova York e outras cidades a partir de R$ 3.955, com bagagem despachada!</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:0.52s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/hoteis-em-porto-de-galinhas-com-ate-55-de-desconto-na-hoteis-com/" target="_blank">Hotéis em Porto de Galinhas com até 55 % de desconto na Hoteis.com</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Cartao de Credito" data-rel="0" style="animation-delay:0.56s">
+      <div class="card-bar" style="background:#ef4444"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/united-mileageplus-oferece-ate-50-de-desconto-na-compra-de-milhas/" target="_blank">United MileagePlus oferece até 50% de desconto na compra de milhas</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">💳 Cartão</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#ef4444"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:0.6s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/azul-oferta-de-voos-festival-de-parintins/" target="_blank">Azul aumenta a oferta de voos para o Festival de Parintins</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:0.64s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/mercado-livre-oferece-cupom-de-ate-r-40-de-desconto-no-site-todo/" target="_blank">Mercado Livre oferece cupom de até R$ 40 de desconto no site todo</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:0.68s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/5-sugestoes-de-trechos-com-a-azul-a-partir-de-5-200-pontos-taxas-2/" target="_blank">5 sugestões de trechos com a Azul a partir de 5.200 pontos + taxas</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Compra Bonificada" data-rel="0" style="animation-delay:0.72s">
+      <div class="card-bar" style="background:#f59e0b"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/esfera-oferece-ate-4-pontos-por-real-gasto-no-extra-2/" target="_blank">Esfera oferece até 4 pontos por real gasto no Extra</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:0.76s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/escapada-de-dia-das-maes-hoteis-na-europa-com-ate-34-off-na-hoteis-com/" target="_blank">Escapada de Dia das Mães! Hotéis na Europa com até 34% off na Hoteis.com</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:0.8s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/as-10-melhores-emissoes-em-classe-executiva-no-aadvantage/" target="_blank">As 10 melhores emissões em Classe Executiva no AAdvantage</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:0.84s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/tem-video-novo-youtube-conhecendo-parque-ecologico-cortado-vale-pena-ir/" target="_blank">Tem vídeo novo no YouTube: Conhecendo o Parque Ecológico do Cortado — vale a pena ir?</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Compra Bonificada" data-rel="0" style="animation-delay:0.88s">
+      <div class="card-bar" style="background:#f59e0b"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/esfera-oferece-ate-19-pontos-real-gasto-parceiros-selecionados/" target="_blank">Esfera oferece até 19 pontos por real gasto em parceiros selecionados</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:0.92s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/pre-venda-ingressos-show-ed-sheeran-santander/" target="_blank">Pré-venda de ingressos para show do Ed Sheeran com Santander</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:0.96s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/alerta-passagens-ppv-resgate-trechos-nacionais-partir-3122-milhas-taxas/" target="_blank">Alerta de passagens PPV! Resgate trechos nacionais a partir de 3.122 milhas + taxas</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Cartao de Credito" data-rel="0" style="animation-delay:1.0s">
+      <div class="card-bar" style="background:#ef4444"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/participe-bate-papo-ppv-dicas-viagens-milhas-experiencias/" target="_blank">Participe do Bate-papo PPV: dicas de viagens, milhas e experiências</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">💳 Cartão</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#ef4444"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.04s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/amazon-libera-novo-cupom-100-reais-off/" target="_blank">Amazon libera novo cupom de R$ 100 OFF</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Cartao de Credito" data-rel="0" style="animation-delay:1.08s">
+      <div class="card-bar" style="background:#ef4444"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/mastercard-surpreenda-oferece-cupom-22-porcento-off-hoteis-azul-viagens/" target="_blank">Mastercard Surpreenda oferece cupom de 22% OFF em hotéis na Azul Viagens</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">💳 Cartão</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#ef4444"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.12s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/mes-maes-assist-card-contrate-seguro-viagem-ate-56-off/" target="_blank">Mês das Mães Assist Card! Contrate o seguro viagem com até 56% OFF</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.16s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/iof-zero-conta-multimoedas-e-ate-us20-de-cashback-abra-sua-conta-na-astropay-e-aproveite/" target="_blank">IOF Zero, conta multimoedas e até US$20 de cashback – abra sua conta na AstroPay e aproveite!</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.2s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Melhores Cartões</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://www.melhorescartoes.com.br/ate-r-60-off-novo-cupom-do-mercado-livre-garante-20-de-desconto-em-produtos-selecionados.html" target="_blank">Até R$ 60 OFF! Novo cupom do Mercado Livre garante 20% de desconto em produtos selecionados</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:1.24s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Melhores Cartões</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://www.melhoresdestinos.com.br/milhas/voos-orlando-azul-abr26" target="_blank">Voos da Azul para Orlando por R$ 848 ou 71 mil pontos o trecho mais taxas</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens|Clube Assinatura" data-rel="0" style="animation-delay:1.28s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Melhores Cartões</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://www.melhoresdestinos.com.br/milhas/passagens-bogota-bsb-abr26" target="_blank">Voos diretos de Brasília para Bogotá por 32 mil milhas Smiles o trecho</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">🏆 Clube</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens|Clube Assinatura" data-rel="0" style="animation-delay:1.32s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Melhores Cartões</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://www.melhoresdestinos.com.br/milhas/passagens-miami-aa-30abr26" target="_blank">Voos diretos para Miami com bagagem por 61 mil milhas Smiles o trecho</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">🏆 Clube</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.36s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Melhores Cartões</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://www.melhorescartoes.com.br/nubank-vantagens-nu-ofertas-descontos.html" target="_blank">Nubank ganha Vantagens Nu, com ofertas e descontos direto no app</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.4000000000000001s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Melhores Cartões</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://www.melhorescartoes.com.br/resumo-promocoes-cartoes-credito-milhas-pontos-cashback.html" target="_blank">Promoções de milhas, cartões, cashback e cupons válidas hoje!</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.44s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Max Milhas Blog</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://blog.maxmilhas.com.br/destinos/curitiba" target="_blank">Curitiba</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.48s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Max Milhas Blog</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://blog.maxmilhas.com.br/milhas-aereas/como-fazer-dinheiro-milhas" target="_blank">Como ganhar dinheiro com milhas aéreas? Dicas para aumentar sua renda!</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div></div>
+  <div class="empty" id="empty">
+    <div class="empty-icon">🔍</div>
+    <p>Nenhuma promoção encontrada com esses filtros.</p>
+  </div>
+</div>
+<footer>Monitor de Milhas • 02/05/2026 às 18:42 • 38 promoções encontradas</footer>
+<script>
+let catAtiva='all',buscaAtiva='';
+function filtrar(btn,cat){catAtiva=cat;document.querySelectorAll('.pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');aplicar()}
+function buscar(v){buscaAtiva=v.toLowerCase();aplicar()}
+function aplicar(){
+  const cards=document.querySelectorAll('.card');
+  let vis=0;
+  cards.forEach(c=>{
+    const cats=c.dataset.cats||'';
+    const titulo=c.querySelector('h3').textContent.toLowerCase();
+    const ok=(catAtiva==='all'||cats.includes(catAtiva))&&(!buscaAtiva||titulo.includes(buscaAtiva));
+    c.classList.toggle('hidden',!ok);
+    if(ok)vis++;
+  });
+  document.getElementById('empty').style.display=vis===0?'block':'none';
+}
+</script>
+</body>
+</html>
