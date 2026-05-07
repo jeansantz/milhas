@@ -62,17 +62,17 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
     <div class="logo">Monitor de <b>Milhas</b> ✈</div>
     <div class="sub">Promoções agregadas automaticamente das melhores fontes do Brasil</div>
     <div class="stats">
-      <div class="stat"><span class="n">44</span><span class="l">Promoções</span></div>
+      <div class="stat"><span class="n">46</span><span class="l">Promoções</span></div>
       <div class="stat"><span class="n">12</span><span class="l">Fontes</span></div>
       <div class="stat"><span class="n">6</span><span class="l">Categorias</span></div>
     </div>
-    <div class="ts">Última atualização: <strong>06/05/2026 às 15:12</strong></div>
+    <div class="ts">Última atualização: <strong>07/05/2026 às 08:32</strong></div>
   </div>
 </header>
 <div class="bar-top">
   <div class="bar-inner">
     <span class="bar-label">Filtrar:</span>
-    <button class="pill active" onclick="filtrar(this,'all')">Todas <em>44</em></button><button class="pill" onclick="filtrar(this,'Transferencia de Milhas')" style="--c:#3b82f6">🔄 Transferência <em>6</em></button><button class="pill" onclick="filtrar(this,'Compra Bonificada')" style="--c:#f59e0b">🛒 Compra Bonificada <em>5</em></button><button class="pill" onclick="filtrar(this,'Geral')" style="--c:#6b7280">📌 Geral <em>23</em></button><button class="pill" onclick="filtrar(this,'Cartao de Credito')" style="--c:#ef4444">💳 Cartão <em>2</em></button><button class="pill" onclick="filtrar(this,'Passagens')" style="--c:#10b981">✈️ Passagens <em>9</em></button><button class="pill" onclick="filtrar(this,'Clube Assinatura')" style="--c:#8b5cf6">🏆 Clube <em>4</em></button>
+    <button class="pill active" onclick="filtrar(this,'all')">Todas <em>46</em></button><button class="pill" onclick="filtrar(this,'Transferencia de Milhas')" style="--c:#3b82f6">🔄 Transferência <em>5</em></button><button class="pill" onclick="filtrar(this,'Clube Assinatura')" style="--c:#8b5cf6">🏆 Clube <em>5</em></button><button class="pill" onclick="filtrar(this,'Passagens')" style="--c:#10b981">✈️ Passagens <em>13</em></button><button class="pill" onclick="filtrar(this,'Compra Bonificada')" style="--c:#f59e0b">🛒 Compra Bonificada <em>4</em></button><button class="pill" onclick="filtrar(this,'Cartao de Credito')" style="--c:#ef4444">💳 Cartão <em>3</em></button><button class="pill" onclick="filtrar(this,'Geral')" style="--c:#6b7280">📌 Geral <em>21</em></button>
   </div>
 </div>
 <div class="search-wrap">
@@ -80,21 +80,49 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
 </div>
 <div class="grid-wrap">
   <div class="grid" id="grid">
-    <div class="card" data-cats="Transferencia de Milhas" data-rel="2" style="animation-delay:0.0s">
+    <div class="card" data-cats="Transferencia de Milhas|Clube Assinatura" data-rel="4" style="animation-delay:0.0s">
+      <div class="card-bar" style="background:#3b82f6"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">★★★★☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/azul-fidelidade-oferece-ate-110-de-bonus-nas-transferencias-de-pontos-do-sicredi/" target="_blank">Azul Fidelidade oferece até 110% de bônus nas transferências de pontos do Sicredi</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">🔄 Transferência</span><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">🏆 Clube</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:40%;background:#3b82f6"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens" data-rel="3" style="animation-delay:0.04s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">★★★☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/miles-more-oferece-ate-3-000-milhas-bonus-em-voos-com-a-ita-airways/" target="_blank">Miles & More oferece até 3.000 milhas bônus em voos com a ITA Airways</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:30%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Transferencia de Milhas" data-rel="2" style="animation-delay:0.08s">
       <div class="card-bar" style="background:#3b82f6"></div>
       <div class="card-body">
         <div class="card-top">
           <span class="site">Passageiro de Primeira</span>
           <span class="stars">★★☆☆☆</span>
         </div>
-        <h3><a href="https://passageirodeprimeira.com/prorrogado-assine-o-all-signature-e-garanta-ate-15-de-bonus-ao-transferir-pontos-para-o-all-accor/" target="_blank">Prorrogado! Assine o ALL Signature e garanta até 15% de bônus ao transferir pontos para o ALL Accor</a></h3>
+        <h3><a href="https://passageirodeprimeira.com/latam-pass-oferece-25-de-bonus-na-transferencia-de-pontos-do-banrisul/" target="_blank">LATAM Pass oferece 25% de bônus na transferência de pontos do Banrisul</a></h3>
         <div class="card-bottom">
           <div class="badges"><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">🔄 Transferência</span></div>
           <div class="bar-wrap"><div class="bar-fill" style="width:20%;background:#3b82f6"></div></div>
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Transferencia de Milhas" data-rel="2" style="animation-delay:0.04s">
+    <div class="card" data-cats="Transferencia de Milhas" data-rel="2" style="animation-delay:0.12s">
       <div class="card-bar" style="background:#3b82f6"></div>
       <div class="card-body">
         <div class="card-top">
@@ -108,7 +136,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Transferencia de Milhas" data-rel="2" style="animation-delay:0.08s">
+    <div class="card" data-cats="Transferencia de Milhas" data-rel="2" style="animation-delay:0.16s">
       <div class="card-bar" style="background:#3b82f6"></div>
       <div class="card-body">
         <div class="card-top">
@@ -122,49 +150,63 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Compra Bonificada|Transferencia de Milhas" data-rel="2" style="animation-delay:0.12s">
+    <div class="card" data-cats="Compra Bonificada|Passagens" data-rel="1" style="animation-delay:0.2s">
       <div class="card-bar" style="background:#f59e0b"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="site">Pontos pra Voar</span>
-          <span class="stars">★★☆☆☆</span>
-        </div>
-        <h3><a href="https://pontospravoar.com/transfira-pontos-sicredi-azul-fidelidade-110-porcento-bonus/" target="_blank">Transfira pontos do Sicredi para o Azul Fidelidade com 110% de bônus</a></h3>
-        <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">🔄 Transferência</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:20%;background:#f59e0b"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.16s">
-      <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
           <span class="site">Melhores Destinos</span>
           <span class="stars">★☆☆☆☆</span>
         </div>
-        <h3><a href="https://www.melhoresdestinos.com.br/promocao/rentcars-cupom-relampago" target="_blank">Promoção relâmpago! Alugue carro com até 50% OFF mais cupons com 10% ou 8% de desconto na Rentcars</a></h3>
+        <h3><a href="https://www.melhoresdestinos.com.br/promocao/porto-de-galinhas-all-inclusive-3388" target="_blank">Porto de Galinhas! Curta o Enotel com voos mais hospedagem all inclusive a partir de R$ 3.388 por pessoa</a></h3>
         <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#6b7280"></div></div>
+          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#f59e0b"></div></div>
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Transferencia de Milhas" data-rel="1" style="animation-delay:0.2s">
+    <div class="card" data-cats="Passagens" data-rel="1" style="animation-delay:0.24s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/aproveite-resgate-passagens-partir-7500-milhas-flying-blue/" target="_blank">Aproveite resgate de passagens a partir de 7.500 milhas Flying Blue</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Transferencia de Milhas" data-rel="1" style="animation-delay:0.28s">
       <div class="card-bar" style="background:#3b82f6"></div>
       <div class="card-body">
         <div class="card-top">
           <span class="site">Pontos pra Voar</span>
           <span class="stars">★☆☆☆☆</span>
         </div>
-        <h3><a href="https://pontospravoar.com/prorrogou-all-signature-oferece-ate-15-de-bonus-na-transferencia-de-pontos/" target="_blank">Prorrogou! ALL Signature oferece até 15% de bônus na transferência de pontos</a></h3>
+        <h3><a href="https://pontospravoar.com/radar-ppv-resumo-promocoes-acumulo-transferencia-pontos-dia-6-maio-2026/" target="_blank">Radar PPV! Resumo das promoções de acúmulo e transferência de pontos do dia 6 de maio de 2026</a></h3>
         <div class="card-bottom">
           <div class="badges"><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">🔄 Transferência</span></div>
           <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#3b82f6"></div></div>
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Cartao de Credito" data-rel="1" style="animation-delay:0.24s">
+    <div class="card" data-cats="Clube Assinatura" data-rel="1" style="animation-delay:0.32s">
+      <div class="card-bar" style="background:#8b5cf6"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">★☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/ganhe-20000-milhas-hora-realizar-assinatura-clube-smiles-2000/" target="_blank">Ganhe 20.000 milhas na hora ao realizar a assinatura do Clube Smiles 2.000</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">🏆 Clube</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#8b5cf6"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Cartao de Credito" data-rel="1" style="animation-delay:0.36s">
       <div class="card-bar" style="background:#ef4444"></div>
       <div class="card-body">
         <div class="card-top">
@@ -178,7 +220,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Passagens" data-rel="1" style="animation-delay:0.28s">
+    <div class="card" data-cats="Passagens" data-rel="1" style="animation-delay:0.4s">
       <div class="card-bar" style="background:#10b981"></div>
       <div class="card-body">
         <div class="card-top">
@@ -192,7 +234,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.32s">
+    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.44s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -206,7 +248,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.36s">
+    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.48s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -220,7 +262,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.4s">
+    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.52s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -234,7 +276,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.44s">
+    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.56s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -248,7 +290,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.48s">
+    <div class="card" data-cats="Geral" data-rel="1" style="animation-delay:0.6s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -262,59 +304,17 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:0.52s">
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:0.64s">
       <div class="card-bar" style="background:#10b981"></div>
       <div class="card-body">
         <div class="card-top">
           <span class="site">Melhores Destinos</span>
           <span class="stars">☆☆☆☆☆</span>
         </div>
-        <h3><a href="https://www.melhoresdestinos.com.br/promocao/passagens-aereas-2-em-1-estados-unidos-30-04-26" target="_blank">EUA 2×1 🇺🇸 Voos para Miami mais Orlando, Nova York e outras cidades a partir de R$ 3.955, com bagagem despachada!</a></h3>
+        <h3><a href="https://www.melhoresdestinos.com.br/promocao/pacote-viagem-decolar-buenos-aires-06-05-26" target="_blank">Buenos Aires! Pacotes da Decolar com voos mais hospedagem a partir de R$ 1.700 por pessoa, em até 6 vezes sem juros!</a></h3>
         <div class="card-bottom">
           <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
           <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:0.56s">
-      <div class="card-bar" style="background:#6b7280"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="site">Passageiro de Primeira</span>
-          <span class="stars">☆☆☆☆☆</span>
-        </div>
-        <h3><a href="https://passageirodeprimeira.com/los-angeles-a-partir-de-r-1-187-ou-97-mil-pontos-azul-taxas/" target="_blank">Los Angeles a partir de R$ 1.187 ou 97 mil pontos Azul + taxas</a></h3>
-        <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cats="Compra Bonificada|Clube Assinatura" data-rel="0" style="animation-delay:0.6s">
-      <div class="card-bar" style="background:#f59e0b"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="site">Passageiro de Primeira</span>
-          <span class="stars">☆☆☆☆☆</span>
-        </div>
-        <h3><a href="https://passageirodeprimeira.com/shopping-smiles-prorroga-oferta-de-ate-19-milhas-por-real-gasto-em-parceiros/" target="_blank">Shopping Smiles prorroga oferta de até 19 milhas por real gasto em parceiros</a></h3>
-        <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">🏆 Clube</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#f59e0b"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cats="Compra Bonificada" data-rel="0" style="animation-delay:0.64s">
-      <div class="card-bar" style="background:#f59e0b"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="site">Passageiro de Primeira</span>
-          <span class="stars">☆☆☆☆☆</span>
-        </div>
-        <h3><a href="https://passageirodeprimeira.com/livelo-oferece-ate-8-pontos-por-real-gasto-na-morana-casas-bahia-e-mais-parceiros/" target="_blank">Livelo oferece até 8 pontos por real gasto na Morana, Casas Bahia e mais parceiros</a></h3>
-        <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#f59e0b"></div></div>
         </div>
       </div>
     </div>
@@ -322,10 +322,10 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
       <div class="card-bar" style="background:#10b981"></div>
       <div class="card-body">
         <div class="card-top">
-          <span class="site">Passageiro de Primeira</span>
+          <span class="site">Melhores Destinos</span>
           <span class="stars">☆☆☆☆☆</span>
         </div>
-        <h3><a href="https://passageirodeprimeira.com/muito-bom-punta-del-este-a-partir-de-r-282-ou-17-mil-pontos-azul-taxas-por-trecho-utilizando-passagem-cortesia/" target="_blank">Muito bom! Punta del Este a partir de R$ 282 ou 17 mil pontos Azul + taxas por trecho utilizando passagem cortesia</a></h3>
+        <h3><a href="https://www.melhoresdestinos.com.br/latam-voos-cancelados-guerra-combustivel.html" target="_blank">Efeitos da guerra: Latam vai cancelar voos em junho e prevê custo extra de US$ 700 milhões com combustível</a></h3>
         <div class="card-bottom">
           <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
           <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
@@ -339,52 +339,52 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
           <span class="site">Passageiro de Primeira</span>
           <span class="stars">☆☆☆☆☆</span>
         </div>
-        <h3><a href="https://passageirodeprimeira.com/mercado-livre-oferece-cupom-de-ate-25-de-desconto-em-compras/" target="_blank">Mercado Livre oferece cupom de até 25% de desconto em compras</a></h3>
+        <h3><a href="https://passageirodeprimeira.com/copa-nos-eua-voe-a-partir-de-r-1-248-ou-101-mil-pontos-azul-taxas/" target="_blank">Copa nos EUA! Voe a partir de R$ 1.248 ou 101 mil pontos Azul + taxas</a></h3>
         <div class="card-bottom">
           <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
           <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Compra Bonificada" data-rel="0" style="animation-delay:0.76s">
-      <div class="card-bar" style="background:#f59e0b"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="site">Passageiro de Primeira</span>
-          <span class="stars">☆☆☆☆☆</span>
-        </div>
-        <h3><a href="https://passageirodeprimeira.com/esfera-oferece-ate-10-pontos-por-real-gasto-na-camicado-polishop-e-mais/" target="_blank">Esfera oferece até 10 pontos por real gasto na Camicado, Polishop e mais</a></h3>
-        <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#f59e0b"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cats="Cartao de Credito" data-rel="0" style="animation-delay:0.8s">
-      <div class="card-bar" style="background:#ef4444"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="site">Passageiro de Primeira</span>
-          <span class="stars">☆☆☆☆☆</span>
-        </div>
-        <h3><a href="https://passageirodeprimeira.com/como-juntar-milhas-no-aadvantage-com-o-cartao-de-credito/" target="_blank">Como juntar milhas no AAdvantage com o cartão de crédito</a></h3>
-        <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">💳 Cartão</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#ef4444"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:0.84s">
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:0.76s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
           <span class="site">Passageiro de Primeira</span>
           <span class="stars">☆☆☆☆☆</span>
         </div>
-        <h3><a href="https://passageirodeprimeira.com/hoteis-em-praga-com-ate-34-de-desconto-na-hoteis-com/" target="_blank">Hotéis em Praga com até 34% de desconto na Hoteis.com</a></h3>
+        <h3><a href="https://passageirodeprimeira.com/abra-sua-conta-nomad-e-ganhe-ate-9-mil-pontos-no-azul-fidelidade/" target="_blank">Abra sua conta Nomad e ganhe até 9 mil pontos no Azul Fidelidade</a></h3>
         <div class="card-bottom">
           <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
           <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:0.8s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/capsulas-nespresso-com-ate-34-de-desconto-na-shopee-3/" target="_blank">Cápsulas Nespresso com até 34% de desconto na Shopee</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Cartao de Credito" data-rel="0" style="animation-delay:0.84s">
+      <div class="card-bar" style="background:#ef4444"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/mastercard-lanca-debito-pro-com-cashback-e-pontos-no-brasil/" target="_blank">Novo cartão de débito da Mastercard traz cashback e benefícios</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">💳 Cartão</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#ef4444"></div></div>
         </div>
       </div>
     </div>
@@ -395,7 +395,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
           <span class="site">Passageiro de Primeira</span>
           <span class="stars">☆☆☆☆☆</span>
         </div>
-        <h3><a href="https://passageirodeprimeira.com/hoteis-em-joanesburgo-com-ate-34-de-desconto-na-hoteis-com/" target="_blank">Hotéis em Joanesburgo com até 34% de desconto na Hoteis.com</a></h3>
+        <h3><a href="https://passageirodeprimeira.com/malas-de-viagem-com-ate-39-de-desconto-na-amazon/" target="_blank">Malas de viagem com até 39% de desconto na Amazon</a></h3>
         <div class="card-bottom">
           <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
           <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
@@ -409,70 +409,140 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
           <span class="site">Passageiro de Primeira</span>
           <span class="stars">☆☆☆☆☆</span>
         </div>
-        <h3><a href="https://passageirodeprimeira.com/cafeteiras-com-ate-55-de-desconto-na-amazon-3/" target="_blank">Cafeteiras com até 55% de desconto na Amazon</a></h3>
+        <h3><a href="https://passageirodeprimeira.com/los-angeles-a-partir-de-r-1-187-ou-97-mil-pontos-azul-taxas/" target="_blank">Los Angeles a partir de R$ 1.187 ou 97 mil pontos Azul + taxas</a></h3>
         <div class="card-bottom">
           <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
           <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:0.96s">
-      <div class="card-bar" style="background:#6b7280"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="site">Passageiro de Primeira</span>
-          <span class="stars">☆☆☆☆☆</span>
-        </div>
-        <h3><a href="https://passageirodeprimeira.com/copa-do-mundo-eua-a-partir-de-r-970-ou-79-mil-pontos-azul-taxas/" target="_blank">Copa do Mundo! EUA a partir de R$ 970 ou 79 mil pontos Azul + taxas</a></h3>
-        <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cats="Compra Bonificada|Clube Assinatura" data-rel="0" style="animation-delay:1.0s">
+    <div class="card" data-cats="Compra Bonificada|Clube Assinatura" data-rel="0" style="animation-delay:0.96s">
       <div class="card-bar" style="background:#f59e0b"></div>
       <div class="card-body">
         <div class="card-top">
           <span class="site">Passageiro de Primeira</span>
           <span class="stars">☆☆☆☆☆</span>
         </div>
-        <h3><a href="https://passageirodeprimeira.com/shopping-smiles-oferece-ate-19-milhas-por-real-gasto-em-parceiros/" target="_blank">Shopping Smiles oferece até 19 milhas por real gasto em parceiros</a></h3>
+        <h3><a href="https://passageirodeprimeira.com/shopping-smiles-prorroga-oferta-de-ate-19-milhas-por-real-gasto-em-parceiros/" target="_blank">Shopping Smiles prorroga oferta de até 19 milhas por real gasto em parceiros</a></h3>
         <div class="card-bottom">
           <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">🏆 Clube</span></div>
           <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#f59e0b"></div></div>
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.04s">
-      <div class="card-bar" style="background:#6b7280"></div>
+    <div class="card" data-cats="Compra Bonificada" data-rel="0" style="animation-delay:1.0s">
+      <div class="card-bar" style="background:#f59e0b"></div>
       <div class="card-body">
         <div class="card-top">
           <span class="site">Passageiro de Primeira</span>
           <span class="stars">☆☆☆☆☆</span>
         </div>
-        <h3><a href="https://passageirodeprimeira.com/mercado-livre-oferece-cupom-de-ate-18-de-desconto-em-compras-2/" target="_blank">Mercado Livre oferece cupom de até 18% de desconto em compras</a></h3>
+        <h3><a href="https://passageirodeprimeira.com/livelo-oferece-ate-8-pontos-por-real-gasto-na-morana-casas-bahia-e-mais-parceiros/" target="_blank">Livelo oferece até 8 pontos por real gasto na Morana, Casas Bahia e mais parceiros</a></h3>
         <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#f59e0b"></div></div>
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:1.08s">
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:1.04s">
       <div class="card-bar" style="background:#10b981"></div>
       <div class="card-body">
         <div class="card-top">
           <span class="site">Passageiro de Primeira</span>
           <span class="stars">☆☆☆☆☆</span>
         </div>
-        <h3><a href="https://passageirodeprimeira.com/livelo-oferece-25-de-desconto-em-voos-para-joao-pessoa/" target="_blank">Livelo oferece 25% de desconto em voos para João Pessoa</a></h3>
+        <h3><a href="https://passageirodeprimeira.com/muito-bom-punta-del-este-a-partir-de-r-282-ou-17-mil-pontos-azul-taxas-por-trecho-utilizando-passagem-cortesia/" target="_blank">Muito bom! Punta del Este a partir de R$ 282 ou 17 mil pontos Azul + taxas por trecho utilizando passagem cortesia</a></h3>
         <div class="card-bottom">
           <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
           <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Passagens|Clube Assinatura" data-rel="0" style="animation-delay:1.12s">
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.08s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/mercado-livre-oferece-cupom-de-ate-25-de-desconto-em-compras/" target="_blank">Mercado Livre oferece cupom de até 25% de desconto em compras</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Compra Bonificada" data-rel="0" style="animation-delay:1.12s">
+      <div class="card-bar" style="background:#f59e0b"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/esfera-oferece-ate-10-pontos-por-real-gasto-na-camicado-polishop-e-mais/" target="_blank">Esfera oferece até 10 pontos por real gasto na Camicado, Polishop e mais</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">🛒 Compra Bonificada</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Cartao de Credito" data-rel="0" style="animation-delay:1.16s">
+      <div class="card-bar" style="background:#ef4444"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Passageiro de Primeira</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://passageirodeprimeira.com/como-juntar-milhas-no-aadvantage-com-o-cartao-de-credito/" target="_blank">Como juntar milhas no AAdvantage com o cartão de crédito</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">💳 Cartão</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#ef4444"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.2s">
+      <div class="card-bar" style="background:#6b7280"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/aproveite-veja-cupons-dessa-quarta-feira-pos-5-5/" target="_blank">Aproveite! Veja os cupons dessa quarta-feira pós-5.5</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:1.24s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/compartilhando-emissoes-madri-hiroshima-classe-executiva-japan-airlines/" target="_blank">Compartilhando Emissões: Madri para Hiroshima na classe executiva da Japan Airlines</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:1.28s">
+      <div class="card-bar" style="background:#10b981"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="site">Pontos pra Voar</span>
+          <span class="stars">☆☆☆☆☆</span>
+        </div>
+        <h3><a href="https://pontospravoar.com/alerta-passagens-ppv-veja-trechos-nacionais-partir-4220-milhas-latam-pass-taxas/" target="_blank">Alerta de passagens PPV! Veja trechos nacionais partir de 4.220 milhas LATAM Pass + taxas</a></h3>
+        <div class="card-bottom">
+          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-cats="Passagens|Clube Assinatura" data-rel="0" style="animation-delay:1.32s">
       <div class="card-bar" style="background:#10b981"></div>
       <div class="card-body">
         <div class="card-top">
@@ -486,7 +556,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.16s">
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.36s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -500,7 +570,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.2s">
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.4000000000000001s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -514,49 +584,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Transferencia de Milhas" data-rel="0" style="animation-delay:1.24s">
-      <div class="card-bar" style="background:#3b82f6"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="site">Pontos pra Voar</span>
-          <span class="stars">☆☆☆☆☆</span>
-        </div>
-        <h3><a href="https://pontospravoar.com/radar-ppv-resumo-promocoes-acumulo-transferencia-pontos-dia-5-maio-2026/" target="_blank">Radar PPV! Resumo das promoções de acúmulo e transferência de pontos do dia 5 de maio de 2026</a></h3>
-        <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">🔄 Transferência</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#3b82f6"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.28s">
-      <div class="card-bar" style="background:#6b7280"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="site">Pontos pra Voar</span>
-          <span class="stars">☆☆☆☆☆</span>
-        </div>
-        <h3><a href="https://pontospravoar.com/celebre-mes-maes-assist-card-ate-56-porcento-off-seguro-viagem/" target="_blank">Celebre o Mês das Mães com a Assist Card – Até 56% OFF no seguro viagem</a></h3>
-        <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">📌 Geral</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#6b7280"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:1.32s">
-      <div class="card-bar" style="background:#10b981"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="site">Pontos pra Voar</span>
-          <span class="stars">☆☆☆☆☆</span>
-        </div>
-        <h3><a href="https://pontospravoar.com/alerta-passagens-ppv-conheca-lisboa-partir-73000-pontos-azul-pelo-mundo/" target="_blank">Alerta de passagens PPV! Conheça Lisboa a partir de 73.000 pontos no Azul pelo Mundo</a></h3>
-        <div class="card-bottom">
-          <div class="badges"><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">✈️ Passagens</span></div>
-          <div class="bar-wrap"><div class="bar-fill" style="width:0%;background:#10b981"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:1.36s">
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:1.44s">
       <div class="card-bar" style="background:#10b981"></div>
       <div class="card-body">
         <div class="card-top">
@@ -570,7 +598,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.4000000000000001s">
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.48s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -584,7 +612,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.44s">
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.52s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -598,7 +626,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:1.48s">
+    <div class="card" data-cats="Passagens" data-rel="0" style="animation-delay:1.56s">
       <div class="card-bar" style="background:#10b981"></div>
       <div class="card-body">
         <div class="card-top">
@@ -612,7 +640,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Passagens|Clube Assinatura" data-rel="0" style="animation-delay:1.52s">
+    <div class="card" data-cats="Passagens|Clube Assinatura" data-rel="0" style="animation-delay:1.6s">
       <div class="card-bar" style="background:#10b981"></div>
       <div class="card-body">
         <div class="card-top">
@@ -626,7 +654,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.56s">
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.6400000000000001s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -640,7 +668,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.6s">
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.68s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -654,7 +682,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.6400000000000001s">
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.72s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -668,7 +696,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.68s">
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.76s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -682,7 +710,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
         </div>
       </div>
     </div>
-    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.72s">
+    <div class="card" data-cats="Geral" data-rel="0" style="animation-delay:1.8s">
       <div class="card-bar" style="background:#6b7280"></div>
       <div class="card-body">
         <div class="card-top">
@@ -701,7 +729,7 @@ footer{text-align:center;padding:1.5rem;color:var(--mt);font-size:.78rem;border-
     <p>Nenhuma promoção encontrada com esses filtros.</p>
   </div>
 </div>
-<footer>Monitor de Milhas • 06/05/2026 às 15:12 • 44 promoções encontradas</footer>
+<footer>Monitor de Milhas • 07/05/2026 às 08:32 • 46 promoções encontradas</footer>
 <script>
 let catAtiva='all',buscaAtiva='';
 function filtrar(btn,cat){catAtiva=cat;document.querySelectorAll('.pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');aplicar()}
